@@ -6,8 +6,8 @@ load_dotenv()
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SITE_URL = os.getenv("SPPUCODES_SITE_URL", "https://sppucodes.vercel.app").strip().rstrip("/")
 QUESTION_PAPERS_SITE_URL = os.getenv(
-    "SPPUQUESTIONPAPERSHUB_SITE_URL",
-    "https://sppuquestionpapershub.vercel.app",
+    "SPPUPYQS_SITE_URL",
+    "https://sppupyqs.vercel.app",
 ).strip().rstrip("/")
 
 QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
