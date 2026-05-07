@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+import os
+
+from flask import Flask, render_template, request, send_from_directory, abort
 from flask_compress import Compress
 from werkzeug.exceptions import HTTPException
 
@@ -8,11 +10,20 @@ def create_app():
     from .async_logger import api_logger
     from .db import init_db
 
-    app = Flask(__name__, template_folder="../templates", static_folder="../static")
+    app = Flask(__name__, template_folder="../templates", static_folder=None)
     app.secret_key = SECRET_KEY
     Compress(app)
     init_db()
     api_logger.start()
+
+    static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
+
+    @app.route("/static/<path:filename>", endpoint="static")
+    def static_files(filename):
+        file_path = os.path.join(static_dir, filename)
+        if not os.path.exists(file_path):
+            abort(404)
+        return send_from_directory(static_dir, filename)
 
     @app.before_request
     def maintenance():
