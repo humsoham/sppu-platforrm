@@ -24,7 +24,7 @@
         content="Download and view {% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
     <link rel="canonical" href="{{ site_url }}/{{ subject_link }}">
-    <link rel="preload" href="https://openfpcdn.io/fingerprintjs/v4" as="script">
+    <link rel="preload" href="https://openfpcdn.io/fingerprintjs/v4/iife.min.js" as="script">
 
     <meta property="og:title" content="{{ seo_data.title | safe }}">
     <meta property="og:description" content="{{ seo_data.description | safe }}">
@@ -49,7 +49,7 @@
 
     <link href="/images/favicon.ico" rel="icon" fetchpriority="high" type="image/x-icon">
     <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.1" rel="stylesheet">
-    <script src="https://openfpcdn.io/fingerprintjs/v4" defer></script>
+    <script src="https://openfpcdn.io/fingerprintjs/v4/iife.min.js" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
     <!-- Set subject name variable with fallback -->

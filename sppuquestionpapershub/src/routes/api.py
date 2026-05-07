@@ -4,6 +4,7 @@ import requests
 from flask import Blueprint, Response, current_app, jsonify, request, stream_with_context
 
 from ..async_logger import log_paper_download_async
+from ..config import PDF_PROXY_ALLOWED_HOSTS
 from ..utils import load_question_papers
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
@@ -41,11 +42,6 @@ def notify_download():
         return jsonify({"error": "server error"}), 500
 
 
-_ALLOWED_PDF_HOSTS = {
-    "sppucodes.albatrossc.workers.dev",
-}
-
-
 @api_bp.route("/pdf-proxy")
 def pdf_proxy():
     pdf_url = request.args.get("url", "").strip()
@@ -57,7 +53,7 @@ def pdf_proxy():
     except Exception:
         return jsonify({"error": "Invalid URL"}), 400
 
-    if parsed.netloc not in _ALLOWED_PDF_HOSTS:
+    if parsed.netloc.lower() not in PDF_PROXY_ALLOWED_HOSTS:
         return jsonify({"error": "Domain not allowed"}), 403
     if not parsed.path.lower().endswith(".pdf"):
         return jsonify({"error": "Only PDF files are allowed"}), 400

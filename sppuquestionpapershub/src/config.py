@@ -28,3 +28,12 @@ SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("FLASK_SECRET_KEY", "karltos")
 DEFAULT_EXAM_TYPE = os.getenv("DEFAULT_EXAM_TYPE", "endsem").strip().lower()
 if DEFAULT_EXAM_TYPE not in {"insem", "endsem"}:
     DEFAULT_EXAM_TYPE = "endsem"
+
+PDF_PROXY_ALLOWED_HOSTS = {
+    host.strip().lower()
+    for host in os.getenv(
+        "PDF_PROXY_ALLOWED_HOSTS",
+        "sppucodes.albatrossc.workers.dev,zauiiivigqoifsvtqhnt.supabase.co",
+    ).split(",")
+    if host.strip()
+}
