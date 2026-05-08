@@ -30,6 +30,16 @@ def sitemap_html():
     return render_template("sitemap.html", site_url=SITE_URL, codes_site_url=CODES_SITE_URL)
 
 
+@main_bp.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
+
+@main_bp.route("/terms")
+def terms():
+    return render_template("terms.html")
+
+
 @main_bp.route("/ads.txt")
 def ads_txt():
     return send_from_directory(BASE_DIR, "ads.txt")
