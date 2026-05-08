@@ -3,8 +3,8 @@
 
 <head>
     <!-- Preload critical assets -->
-    <link rel="preload" href="/static/css/select.css?v=2.0" as="style">
-    <link rel="preload" href="/images/logo.webp" as="image">
+    <link rel="preload" href="/static/css/select.css?v=2.3" as="style">
+    <link rel="preload" href="/images/logo.png" as="image">
 
     <meta name="google-site-verification" content="s0ezZ-kg4bjZR6Jbt_-6H1Im5EDs61Rg5yWJr6BHXFY" />
     <meta name="google-site-verification" content="EZ0Ro0zG4Hc7axgonIr9RZJdN0xW3cVTMueirY8hveA" />
@@ -36,11 +36,11 @@
     <meta name="language" content="English">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/select.css', v='2.0') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select.css', v='2.3') }}" media="all">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.6') }}" media="all">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='1.0') }}" media="all">
 
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/images/logo.png" rel="icon" fetchpriority="high" type="image/png">
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
     <!-- Structured Data -->
@@ -94,7 +94,7 @@
         <header>
             <div class="header__container">
                 <a href="/" class="logo-link" aria-label="SPPU Question Papers Home">
-                    <img src="/images/logo.webp" alt="SPPU PYQs Logo" width="40" height="40" fetchpriority="high">
+                    <img src="/images/logo.png" alt="SPPU PYQs Logo" width="40" height="40" fetchpriority="high">
                     <h1>SPPU PYQs</h1>
                 </a>
 
@@ -122,14 +122,20 @@
                 </div>
 
                 <nav class="header__actions" aria-label="Main navigation">
-                    <a href="https://sppucodes.vercel.app/" class="copy-button">Lab Codes</a>
+                    <a href="https://sppucodes.vercel.app/" class="sppucodes-button">
+                    <img src="/images/logo.png" alt="Logo" width="24" height="24">
+                        <span>Sppucodes</span>
+                    </a>
                 </nav>
             </div>
 
             <!-- Mobile Menu -->
             <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
                 <button class="mobile-menu__close" id="closeMenuBtn" aria-label="Close Menu">&times;</button>
-                <a href="https://sppucodes.vercel.app/" class="copy-button">Lab Codes</a>
+                <a href="https://sppucodes.vercel.app/" class="sppucodes-button">
+                    <img src="/images/logo.png" alt="Logo" width="24" height="24">
+                    <span>Sppucodes</span>
+                </a>
                 <a href="/contact" class="contact-button">Contact</a>
                 <a href="https://github.com/AlbatrossC/sppu-platform" class="github-button" target="_blank"
                     rel="noopener noreferrer" aria-label="View source on GitHub">
@@ -177,7 +183,6 @@
                         {% for sem in semesters.keys() %}
                         <li>
                             <a href="#" onclick="showSubjects('{{ branch }}', '{{ sem }}'); return false;" title="{{ sem }}">
-                                <span class="sem-short">{{ sem.replace('Semester ', 'Sem ') }}</span>
                                 <span class="sem-full">{{ sem }}</span>
                             </a>
                         </li>
@@ -197,7 +202,6 @@
                         <li>
                             <h3>
                                 <a href="/{{ subject.subject_link }}" title="{{ subject.subject_name }} Question Papers">
-                                    <span class="short-form">{{ abbr }}</span>
                                     <span class="full-name">{{ subject.subject_name }}</span>
                                 </a>
                             </h3>
